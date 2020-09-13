@@ -3,3 +3,11 @@ $mediumGray: #bec0c4;
 $darkGray: #484c54;
 $grayishBlue: #4960c9;
 $blue: #1835e6;
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  font-family: "Rubik", sans-serif;
+}

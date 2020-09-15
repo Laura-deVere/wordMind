@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import useSound from "use-sound";
 
-const URLHelper = (prs) => {
+const URLHelper = (pronunciation) => {
   const alaphabet = "abcdefghijklmnopqrstuvwxyz";
-  let audio = prs[0].sound.audio;
+  let audio = pronunciation[0].sound.audio;
   let subDirectory;
   let baseFilename = audio;
   if (audio.startsWith("bix")) {
@@ -22,7 +22,7 @@ const URLHelper = (prs) => {
 
 const Word = ({ isSignedIn, word }) => {
   const [audioURL, setAudioURL] = useState("");
-  const [play, setPlay] = useSound(audioURL);
+  const [play] = useSound(audioURL);
   let newURL = URLHelper(word[0].hwi.prs);
   let currentWord = word[0].meta.id;
   currentWord = currentWord.replace(/[^a-zA-Z]/g, "");
@@ -37,9 +37,9 @@ const Word = ({ isSignedIn, word }) => {
     <div>
       <h3>{currentWord}</h3>
       <button onClick={resetURLAndPlay}>
-        <i className="im im-megaphone"></i>
+        <ion-icon name="megaphone"></ion-icon>
       </button>
-      {isSignedIn ? <i className="im im-star-o"></i> : null}
+      {isSignedIn ? <i className="lni lni-bookmark"></i> : null}
 
       <button>Learn More</button>
     </div>

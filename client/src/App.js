@@ -1,23 +1,26 @@
 import React from "react";
-import { connect } from "react-redux";
-import Nav from "./components/Nav";
-import "./App.scss";
-import Blurb from "./components/Blurb";
-import Search from "./components/Search";
-import Word from "./components/Word";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App({ currentWord }) {
+import Header from "./components/Header";
+import Home from "./components/Home";
+import UserPage from "./components/UserPage";
+import "./App.scss";
+
+function App() {
   return (
-    <div className="App">
-      <Nav />
-      <Blurb />
-      <Search />
-      {currentWord.length ? <Word /> : null}
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route path="/user">
+            <UserPage />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
-const mapStateToProps = (state) => {
-  return { currentWord: state.word };
-};
-export default connect(mapStateToProps)(App);
+export default App;

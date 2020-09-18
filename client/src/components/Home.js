@@ -1,8 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
 import Blurb from "./Blurb";
 import Greeting from "./Greeting";
-const Home = ({ currentWord }) => {
+const Home = () => {
   return (
     <>
       <Greeting />
@@ -11,8 +10,4 @@ const Home = ({ currentWord }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { currentWord: state.word };
-};
-
-export default connect(mapStateToProps)(Home);
+export default Home;

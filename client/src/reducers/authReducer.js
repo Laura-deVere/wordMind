@@ -1,10 +1,8 @@
-import { SIGN_IN, SIGN_OUT } from "./types";
+import { SIGN_IN, SIGN_OUT } from "../actions/types";
 // assign state to empty object initally
 const INITIAL_STATE = {
   isSignedIn: null,
   userId: null,
-  //   userName: null,
-  // userProfile: null,
 };
 
 export default (state = INITIAL_STATE, action) => {

@@ -32,8 +32,9 @@ class GoogleAuth extends Component {
       // const name = this.auth.currentUser.get().getBasicProfile().getGivenName();
 
       const id = this.auth.currentUser.get().getId();
+      console.log(id);
       // const profile = { name: name, id: id };
-      this.props.signIn(id);
+      this.props.signIn(this.auth.currentUser.get().getId());
     } else {
       this.props.signOut();
     }
@@ -71,7 +72,7 @@ class GoogleAuth extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state.auth);
+  console.log(state.auth);
   return { isSignedIn: state.auth.isSignedIn };
 };
 export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);

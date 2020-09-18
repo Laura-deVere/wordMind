@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { createWord } from "../actions";
 import useSound from "use-sound";
 
 const URLHelper = (pronunciation) => {
@@ -20,11 +21,11 @@ const URLHelper = (pronunciation) => {
   return url;
 };
 
-const Word = ({ isSignedIn, word }) => {
+const Word = ({ currentUserID, isSignedIn, searchResult, createWord }) => {
   const [audioURL, setAudioURL] = useState("");
   const [play] = useSound(audioURL);
-  let newURL = URLHelper(word[0].hwi.prs);
-  let currentWord = word[0].meta.id;
+  let newURL = URLHelper(searchResult[0].hwi.prs);
+  let currentWord = searchResult[0].meta.id;
   currentWord = currentWord.replace(/[^a-zA-Z]/g, "");
 
   const resetURLAndPlay = () => {
@@ -33,21 +34,36 @@ const Word = ({ isSignedIn, word }) => {
     play();
   };
 
+  const saveWord = () => {
+    const wordObj = {
+      ...searchResult,
+      userID: currentUserID,
+    };
+    createWord(wordObj);
+  };
+
   return (
     <div>
       <h3>{currentWord}</h3>
       <button onClick={resetURLAndPlay}>
         <ion-icon name="megaphone"></ion-icon>
       </button>
-      {isSignedIn ? <i className="lni lni-bookmark"></i> : null}
-
-      <button>Learn More</button>
+      {isSignedIn ? (
+        <button onClick={() => saveWord()}>
+          <i className="lni lni-bookmark"></i>
+        </button>
+      ) : null}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return { isSignedIn: state.auth.isSignedIn, word: state.word };
+  console.log(state);
+  return {
+    currentUserID: state.auth.userId,
+    isSignedIn: state.auth.isSignedIn,
+    searchResult: state.searchResult,
+  };
 };
 
-export default connect(mapStateToProps)(Word);
+export default connect(mapStateToProps, { createWord })(Word);

@@ -3,11 +3,12 @@ import {
   SIGN_OUT,
   SEARCH_WORD,
   CREATE_WORD,
+  UPDATE_WORD,
   SET_USER_WORD,
   FETCH_USER_WORDS,
 } from "../actions/types";
-import { wordsRef } from "../config/firebase";
 import axios from "../apis/dictionary";
+import { wordsRef, dbRef } from "../config/firebase";
 const DICTIONARY_KEY = process.env.REACT_APP_API_KEY;
 
 // Google Auth
@@ -50,13 +51,46 @@ export const fetchWords = () => async (dispatch) => {
 };
 
 export const createWord = (newWord) => async (dispatch) => {
-  (await wordsRef.push()).set(newWord);
+  const response = await wordsRef.push().set(newWord);
+  console.log(newWord);
+  dispatch({
+    type: CREATE_WORD,
+    payload: newWord,
+  });
 };
 
-export const setUserWord = (word) => {
-  return {
-    type: SET_USER_WORD,
-    payload: word,
-  };
+export const setUserWord = (word) => async (dispatch) => {
+  console.log("set user word", word);
+  const wordRes = await dbRef
+    .ref(`/words/${word.id}`)
+    .once("value")
+    .then((snapshot) => {
+      console.log("snapshot", snapshot.key);
+      const wordObject = {
+        id: snapshot.key,
+        data: snapshot.val(),
+      };
+      dispatch({
+        type: SET_USER_WORD,
+        payload: wordObject,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export const updateWord = (updates) => async (dispatch) => {
+  await wordsRef
+    .update(updates)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_WORD,
+        payload: updates,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 // Firebase

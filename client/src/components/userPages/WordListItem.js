@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { setUserWord } from "../actions";
+import { setUserWord } from "../../actions";
 
 const WordListItemStyle = {
   width: "100%",
@@ -18,8 +18,8 @@ const handleLearnMoreClick = (word, setUserWord) => {
 const WordListItem = ({ word, setUserWord }) => {
   return (
     <div style={WordListItemStyle}>
-      <h3>{word.data[0].meta.id}</h3>
-      <p>{word.data[0].hwi.hw}</p>
+      <h3>{word.data.data[0].meta.id}</h3>
+      <p>{word.data.data[0].hwi.hw}</p>
       <hr />
       {/* <p>"{word.data[0].shortdef[0]}"</p> */}
       <Link to="/user/word">
@@ -33,9 +33,5 @@ const WordListItem = ({ word, setUserWord }) => {
     </div>
   );
 };
-
-// const mapStateToProp = (state) => {
-//     return { currentWord: state.}
-// }
 
 export default connect(null, { setUserWord })(WordListItem);

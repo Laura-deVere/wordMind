@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchWords } from "../actions";
+import { fetchWords } from "../../actions";
 import WordListItem from "./WordListItem";
 
 class WordList extends Component {

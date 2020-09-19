@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { jsx, css } from "@emotion/core";
 import { connect } from "react-redux";
 
-import Search from "./Search";
-import Word from "./Word";
+import Search from "../Search";
+import Word from "../Word";
 import WordCard from "./WordCard";
 import WordList from "./WordList";
 
@@ -58,6 +58,7 @@ const UserPage = ({ isSignedIn, currentWord }) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log("state from user page", state);
   return { isSignedIn: state.auth.isSignedIn, currentWord: state.searchResult };
 };
 

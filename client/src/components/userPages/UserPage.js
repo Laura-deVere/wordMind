@@ -9,6 +9,7 @@ import Search from "../Search";
 import Word from "../Word";
 import WordCard from "./WordCard";
 import WordList from "./WordList";
+import Practice from "./Practice";
 
 const UserPage = ({ isSignedIn, currentWord }) => {
   return (
@@ -42,6 +43,9 @@ const UserPage = ({ isSignedIn, currentWord }) => {
           <Search />
           {currentWord.length ? <Word /> : null}
           <Switch>
+            <Route path="/user/practice">
+              <Practice />
+            </Route>
             <Route path="/user/word">
               <WordCard />
             </Route>

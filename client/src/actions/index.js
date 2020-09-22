@@ -51,11 +51,22 @@ export const fetchWords = () => async (dispatch) => {
 };
 
 export const createWord = (newWord) => async (dispatch) => {
-  const response = await wordsRef.push().set(newWord);
-  console.log(newWord);
-  dispatch({
-    type: CREATE_WORD,
-    payload: newWord,
+  // const id = wordsRef.push().key;
+  wordsRef.push().set(newWord);
+  // const id = addtodb.key;
+
+  // const word = {};
+  // word[id] = { data: newWord };
+
+  // dispatch({
+  //   type: CREATE_WORD,
+  //   payload: word,
+  // });
+  await wordsRef.on("value", (snapshot) => {
+    dispatch({
+      type: CREATE_WORD,
+      payload: snapshot.val(),
+    });
   });
 };
 

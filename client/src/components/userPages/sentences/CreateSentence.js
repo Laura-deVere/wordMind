@@ -23,11 +23,17 @@ const CreateSentence = ({ currentWordID, updateWord, currentWord }) => {
   return (
     <div>
       <div>
-        <input
-          value={sentence}
-          onChange={(e) => updateSentence(e.target.value)}
-        />
-        <button onClick={() => handleSentenceSave()}>Save</button>
+        {currentWord.data.sentences.length > 11 ? (
+          <>
+            <input
+              value={sentence}
+              onChange={(e) => updateSentence(e.target.value)}
+            />
+            <button onClick={() => handleSentenceSave()}>Save</button>
+          </>
+        ) : (
+          <p>All done. 100% Complete.</p>
+        )}
       </div>
       <SentenceList sentences={currentWord.data.sentences} />
     </div>

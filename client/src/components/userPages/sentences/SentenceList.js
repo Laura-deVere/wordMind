@@ -1,6 +1,10 @@
 import React from "react";
 import Sentence from "./Sentence";
 
+const listStyle = {
+  display: "flex",
+  flexDirection: "column",
+};
 const SentenceList = ({ sentences }) => {
   const renderList = () => {
     return sentences.map((sentence, index) => {
@@ -11,6 +15,6 @@ const SentenceList = ({ sentences }) => {
       );
     });
   };
-  return <ul>{renderList()}</ul>;
+  return <ul style={listStyle}>{renderList()}</ul>;
 };
 export default SentenceList;

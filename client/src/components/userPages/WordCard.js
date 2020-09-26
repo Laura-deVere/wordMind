@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Practice from "./Practice";
@@ -14,15 +14,17 @@ const renderDefintionList = (list) => {
   });
 };
 const WordCard = ({ currentWord }) => {
-  if (Object.keys(currentWord).length > 0) {
+  if (currentWord.id) {
+    const word = currentWord.word;
+    console.log("current word", word);
     return (
       <div>
-        <h3>{currentWord.data.data[0].meta.id}</h3>
+        <h3>{word.data[0].meta.id}</h3>
         <hr />
 
-        <p>{currentWord.data.data[0].fl}</p>
+        <p>{word.data[0].fl}</p>
         <hr />
-        <ol>{renderDefintionList(currentWord.data.data[0].shortdef)}</ol>
+        <ol>{renderDefintionList(word.data[0].shortdef)}</ol>
         <Link to="/user">Back</Link>
         <Link to="/user/practice">Practice</Link>
       </div>

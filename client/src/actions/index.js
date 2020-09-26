@@ -2,21 +2,39 @@ import {
   SIGN_IN,
   SIGN_OUT,
   SEARCH_WORD,
-  CREATE_WORD,
-  UPDATE_WORD,
+  CREATE_USER_WORD,
+  CREATE_SENTENCE,
   SET_USER_WORD,
   FETCH_USER_WORDS,
 } from "../actions/types";
 import axios from "../apis/dictionary";
-import { wordsRef, dbRef } from "../config/firebase";
+import { fireStore } from "../config/firebase";
+import {
+  getUserWords,
+  createUserWord,
+  createUserSentence,
+} from "../config/helpers";
 const DICTIONARY_KEY = process.env.REACT_APP_API_KEY;
 
 // Google Auth
-export const signIn = (userId) => {
-  return {
-    type: SIGN_IN,
-    payload: userId,
-  };
+export const signIn = (userId) => async (dispatch) => {
+  const userRef = fireStore.collection("words").doc(userId);
+
+  userRef
+    .get()
+    .then((doc) => {
+      if (!doc.exists) {
+        fireStore.collection("words").doc(userId).set({ userName: "user" });
+      } else {
+        console.log("already exists");
+      }
+    })
+    .then(() => {
+      dispatch({
+        type: SIGN_IN,
+        payload: userId,
+      });
+    });
 };
 
 export const signOut = (userId) => {
@@ -41,67 +59,35 @@ export const searchWord = (term) => async (dispatch) => {
 // dictionary
 
 // Firebase
-export const fetchWords = () => async (dispatch) => {
-  await wordsRef.on("value", (snapshot) => {
-    dispatch({
-      type: FETCH_USER_WORDS,
-      payload: snapshot.val(),
-    });
+export const fetchWords = (userID) => async (dispatch) => {
+  const response = await getUserWords(userID);
+  dispatch({
+    type: FETCH_USER_WORDS,
+    payload: response,
   });
 };
 
-export const createWord = (newWord) => async (dispatch) => {
-  // const id = wordsRef.push().key;
-  wordsRef.push().set(newWord);
-  // const id = addtodb.key;
-
-  // const word = {};
-  // word[id] = { data: newWord };
-
-  // dispatch({
-  //   type: CREATE_WORD,
-  //   payload: word,
-  // });
-  await wordsRef.on("value", (snapshot) => {
-    dispatch({
-      type: CREATE_WORD,
-      payload: snapshot.val(),
-    });
+export const createWord = (newWord, userId) => async (dispatch) => {
+  const response = await createUserWord(newWord, userId);
+  dispatch({
+    type: CREATE_USER_WORD,
+    payload: response,
   });
 };
 
-export const setUserWord = (word) => async (dispatch) => {
-  console.log("set user word", word);
-  const wordRes = await dbRef
-    .ref(`/words/${word.id}`)
-    .once("value")
-    .then((snapshot) => {
-      console.log("snapshot", snapshot.key);
-      const wordObject = {
-        id: snapshot.key,
-        data: snapshot.val(),
-      };
-      dispatch({
-        type: SET_USER_WORD,
-        payload: wordObject,
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+export const setUserWord = (word) => {
+  return {
+    type: SET_USER_WORD,
+    payload: word,
+  };
 };
 
-export const updateWord = (updates) => async (dispatch) => {
-  await wordsRef
-    .update(updates)
-    .then((res) => {
-      dispatch({
-        type: UPDATE_WORD,
-        payload: updates,
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+export const createSentence = (sentences, currentWordID, currentUserID) => {
+  const response = createUserSentence(sentences, currentWordID, currentUserID);
+
+  return {
+    type: CREATE_SENTENCE,
+    payload: response,
+  };
 };
 // Firebase

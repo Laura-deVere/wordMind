@@ -5,7 +5,7 @@ import WordListItem from "./WordListItem";
 
 class WordList extends Component {
   componentDidMount() {
-    this.props.fetchWords();
+    this.props.fetchWords(this.props.currentUserID);
   }
 
   renderList() {
@@ -23,7 +23,7 @@ class WordList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { words: state.words };
+  return { words: state.words, currentUserID: state.auth.userId };
 };
 
 export default connect(mapStateToProps, { fetchWords })(WordList);

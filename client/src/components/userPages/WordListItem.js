@@ -16,10 +16,11 @@ const handleLearnMoreClick = (word, setUserWord) => {
   setUserWord(word);
 };
 const WordListItem = ({ word, setUserWord }) => {
+  const currentWord = word.word;
   return (
     <div style={WordListItemStyle}>
-      <h3>{word.data.data[0].meta.id}</h3>
-      <p>{word.data.data[0].hwi.hw}</p>
+      <h3>{currentWord.data[0].meta.id}</h3>
+      <p>{currentWord.data[0].hwi.hw}</p>
       <hr />
       {/* <p>"{word.data[0].shortdef[0]}"</p> */}
       <Link to="/user/word">

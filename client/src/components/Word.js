@@ -36,12 +36,11 @@ const Word = ({ currentUserID, isSignedIn, searchResult, createWord }) => {
 
   const saveWord = () => {
     const wordObj = {
-      data: [...searchResult],
-      userID: currentUserID,
-      sentences: [0],
+      data: { ...searchResult },
+      sentences: ["Write something to get started!"],
     };
     console.log("----------------------------", wordObj);
-    createWord(wordObj);
+    createWord(wordObj, currentUserID);
   };
 
   return (

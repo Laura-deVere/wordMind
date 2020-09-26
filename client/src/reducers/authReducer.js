@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT } from "../actions/types";
+import { SIGN_IN, SIGN_OUT, CREATE_USER } from "../actions/types";
 // assign state to empty object initally
 const INITIAL_STATE = {
   isSignedIn: null,
@@ -11,6 +11,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, isSignedIn: true, userId: action.payload };
     case SIGN_OUT:
       return { ...state, isSignedIn: false, userId: null };
+    // case CREATE_USER:
+    //   return state;
     default:
       return state;
   }

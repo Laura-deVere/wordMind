@@ -6,20 +6,24 @@ export const getUserWords = async (userID) => {
     .ref(`/words/${userID}`)
     .once("value")
     .then((snapshot) => {
-      console.log("snapshot", snapshot.val().userWords);
-      const response = snapshot.val().userWords;
-      return [
-        ...Object.keys(response).map((key) => {
-          return {
-            id: key,
-            word: {
-              data: response[key].word.data,
-              sentences: response[key].word.sentences,
-            },
-          };
-        }),
-      ];
-    });
+      if (snapshot.val()) {
+        const response = snapshot.val().userWords;
+        return [
+          ...Object.keys(response).map((key) => {
+            return {
+              id: key,
+              word: {
+                data: response[key].word.data,
+                sentences: response[key].word.sentences,
+              },
+            };
+          }),
+        ];
+      } else {
+        return [];
+      }
+    })
+    .catch((error) => console.error());
 };
 
 export const createUserWord = async (newWord, userId) => {
@@ -42,28 +46,42 @@ export const createUserWord = async (newWord, userId) => {
   return word;
 };
 
+export const setCurrentUserWord = async (wordId, currentUserID) => {
+  let word;
+  const ref = dbRef.ref(`/words/${currentUserID}/userWords/${wordId}/word`);
+  return await ref.once("value").then((snapshot) => {
+    console.log(snapshot.val().data);
+    word = {
+      id: wordId,
+      word: {
+        data: snapshot.val().data,
+        sentences: snapshot.val().sentences,
+      },
+    };
+    console.log(word);
+    return word;
+  });
+};
+
 export const createUserSentence = async (
   sentences,
   currentWordID,
   currentUserID
 ) => {
-  let word;
   const getWord = dbRef.ref(
-    `/words/${currentUserID}/userWords/${currentWordID}`
+    `/words/${currentUserID}/userWords/${currentWordID}/word`
   );
-  const newSentence = await dbRef.ref(
-    `/words/${currentUserID}/userWords/${currentWordID}/word/sentences`
-  );
+  const newSentence = await dbRef
+    .ref(`/words/${currentUserID}/userWords/${currentWordID}/word/sentences`)
+    .set([...sentences]);
 
-  newSentence.set([...sentences]).then(() => {
-    getWord.on("child_added", (res) => {
-      return (word = {
-        id: currentWordID,
-        word: {
-          data: res.val().data,
-          sentences: res.val().sentences,
-        },
-      });
-    });
+  return await getWord.once("value").then((snapshot) => {
+    return {
+      id: currentWordID,
+      word: {
+        data: snapshot.val().data,
+        sentences: snapshot.val().sentences,
+      },
+    };
   });
 };

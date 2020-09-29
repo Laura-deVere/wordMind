@@ -6,6 +6,7 @@ export default (state = {}, action) => {
       console.log("words reducer", action.payload);
       return { ...state, ...action.payload };
     case CREATE_SENTENCE:
+      console.log("new sentence", action.payload);
       return {
         ...state,
         ...action.payload,

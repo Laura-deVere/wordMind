@@ -12,10 +12,10 @@ const WordListItemStyle = {
   padding: "1em",
 };
 
-const handleLearnMoreClick = (word, setUserWord) => {
-  setUserWord(word);
+const handleLearnMoreClick = (word, setUserWord, currentUserID) => {
+  setUserWord(word.id, currentUserID);
 };
-const WordListItem = ({ word, setUserWord }) => {
+const WordListItem = ({ word, setUserWord, currentUserID }) => {
   const currentWord = word.word;
   return (
     <div style={WordListItemStyle}>
@@ -24,7 +24,9 @@ const WordListItem = ({ word, setUserWord }) => {
       <hr />
       {/* <p>"{word.data[0].shortdef[0]}"</p> */}
       <Link to="/user/word">
-        <button onClick={() => handleLearnMoreClick(word, setUserWord)}>
+        <button
+          onClick={() => handleLearnMoreClick(word, setUserWord, currentUserID)}
+        >
           Learn More
         </button>
       </Link>
@@ -35,4 +37,8 @@ const WordListItem = ({ word, setUserWord }) => {
   );
 };
 
-export default connect(null, { setUserWord })(WordListItem);
+const mapStateToProps = (state) => {
+  return { currentUserID: state.auth.userId };
+};
+
+export default connect(mapStateToProps, { setUserWord })(WordListItem);

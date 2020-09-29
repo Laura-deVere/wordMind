@@ -13,6 +13,7 @@ import {
   getUserWords,
   createUserWord,
   createUserSentence,
+  setCurrentUserWord,
 } from "../config/helpers";
 const DICTIONARY_KEY = process.env.REACT_APP_API_KEY;
 
@@ -75,19 +76,26 @@ export const createWord = (newWord, userId) => async (dispatch) => {
   });
 };
 
-export const setUserWord = (word) => {
-  return {
-    type: SET_USER_WORD,
-    payload: word,
-  };
+export const setUserWord = (wordId, currentUserID) => async (dispatch) => {
+  const response = await setCurrentUserWord(wordId, currentUserID);
+  console.log(response);
+  dispatch({ type: SET_USER_WORD, payload: response });
 };
 
-export const createSentence = (sentences, currentWordID, currentUserID) => {
-  const response = createUserSentence(sentences, currentWordID, currentUserID);
-
-  return {
+export const createSentence = (
+  sentences,
+  currentWordID,
+  currentUserID
+) => async (dispatch) => {
+  const response = await createUserSentence(
+    sentences,
+    currentWordID,
+    currentUserID
+  );
+  console.log(response, "reeeeeeesponse");
+  dispatch({
     type: CREATE_SENTENCE,
     payload: response,
-  };
+  });
 };
 // Firebase

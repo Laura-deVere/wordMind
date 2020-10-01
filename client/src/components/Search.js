@@ -5,14 +5,11 @@ import { connect } from "react-redux";
 const Search = (props) => {
   const [term, setTerm] = useState("");
   const { searchWord, word } = props;
-  useEffect(() => {
-    // console.log(term);
-    console.log(word);
-  }, [term, word]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     searchWord(term);
+    setTerm("");
   };
   return (
     <form onSubmit={(e) => handleSubmit(e)}>

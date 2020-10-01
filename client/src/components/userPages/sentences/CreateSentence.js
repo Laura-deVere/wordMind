@@ -18,6 +18,7 @@ const CreateSentence = ({
   const handleSentenceSave = (word) => {
     const newArr = [sentence];
     const sentences = [...word.sentences, ...newArr];
+    updateSentence("");
     createSentence(sentences, currentWordID, currentUserID);
   };
 

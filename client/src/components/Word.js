@@ -24,13 +24,16 @@ const URLHelper = (pronunciation) => {
 const Word = ({ currentUserID, isSignedIn, searchResult, createWord }) => {
   const [audioURL, setAudioURL] = useState("");
   const [play] = useSound(audioURL);
-  let newURL = URLHelper(searchResult[0].hwi.prs);
   let currentWord = searchResult[0].meta.id;
   currentWord = currentWord.replace(/[^a-zA-Z]/g, "");
 
   const resetURLAndPlay = () => {
     //   handle constant rerender, only update when ready
-    setAudioURL(newURL);
+    if (searchResult[0].hwi.prs) {
+      let newURL = URLHelper(searchResult[0].hwi.prs);
+      setAudioURL(newURL);
+    }
+
     play();
   };
 
@@ -39,7 +42,6 @@ const Word = ({ currentUserID, isSignedIn, searchResult, createWord }) => {
       data: { ...searchResult },
       sentences: ["Write something to get started!"],
     };
-    console.log("----------------------------", wordObj);
     createWord(wordObj, currentUserID);
   };
 

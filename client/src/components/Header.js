@@ -6,56 +6,20 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 
-import buttonStyles from "../sass/Buttons.module.scss";
+import { nav } from "../sass/Header.module.scss";
+import Avatar from "./Avatar";
 
 const Header = ({ isSignedIn }) => {
   console.log(isSignedIn);
   return (
-    <nav
-      css={css`
-        font-size: 1.5em;
-        color: #fff;
-        background-color: #4960c9;
-        height: 250px;
-        letter-spacing: 1px;
-        margin: 0;
-        padding: 0.5em;
-        width: 100%;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-      `}
-    >
+    <nav className={nav}>
       <Link to="/">
-        <img
-          src={logo}
-          alt="wordmind logo"
-          css={css`
-            width: 100px;
-            height: auto;
-          `}
-        />
+        <img src={logo} alt="wordmind logo" />
       </Link>
-      <ul
-        css={css`
-          font-size: 1.5em;
-          color: #fff;
-          margin: 0;
-          width: 175px;
-          display: flex;
-          align-items: flex-start;
-          list-style: none;
-        `}
-      >
+      <ul>
         {isSignedIn ? (
           <li>
-            <Link to="/user">
-              <button
-                className={`${buttonStyles.btn} ${buttonStyles.btn__blue} ${buttonStyles.btn__small}`}
-              >
-                <i className="lni lni-user"></i>
-              </button>
-            </Link>
+            <Avatar />
           </li>
         ) : null}
         <li>

@@ -13,6 +13,7 @@ const Search = (props) => {
     searchWord(term);
     setTerm("");
   };
+
   return (
     <div>
       <h2 className={styles.formHeader}>

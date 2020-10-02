@@ -2,21 +2,27 @@
 
 .bookmark,
 .megaphone {
-  background-color: #fff;
+  background-color: transparent;
   border: none;
-  background-color: #fff;
   i {
     color: $grayishBlue;
     font-size: 1.5em;
     // background-color: $grayishBlue;
   }
   &__saved {
-    background-color: $grayishBlue;
+    background-color: transparent;
     i {
       color: #fff;
       // background-color: #fff;
     }
   }
+}
+
+.close {
+  background-color: transparent;
+  border: none;
+  color: $grayishBlue;
+  font-size: 2em;
 }
 
 .btn {
@@ -31,6 +37,16 @@
   }
   &__white {
     background-color: #fff;
+    color: $grayishBlue;
+    border: 1px solid $grayishBlue;
+  }
+  &__transparent {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  &__transparent_blue {
+    background-color: transparent;
     color: $grayishBlue;
     border: 1px solid $grayishBlue;
   }

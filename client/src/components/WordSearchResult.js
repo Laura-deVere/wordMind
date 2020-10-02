@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createWord } from "../actions";
 import useSound from "use-sound";
 
-import { bookmark, megaphone } from "../sass/Buttons.module.scss";
+import buttonStyles from "../sass/Buttons.module.scss";
 import styles from "../sass/SearchResult.module.scss";
 
 const URLHelper = (pronunciation) => {
@@ -24,7 +24,13 @@ const URLHelper = (pronunciation) => {
   return url;
 };
 
-const Word = ({ currentUserID, isSignedIn, searchResult, createWord }) => {
+const WordSearchResult = ({
+  currentUserID,
+  isSignedIn,
+  searchResult,
+  createWord,
+  updateVisibility,
+}) => {
   const [audioURL, setAudioURL] = useState("");
   const [play] = useSound(audioURL);
   let currentWord = searchResult[0].meta.id;
@@ -48,7 +54,6 @@ const Word = ({ currentUserID, isSignedIn, searchResult, createWord }) => {
     createWord(wordObj, currentUserID);
   };
 
-  console.log(currentWord);
   return (
     <div className={styles.word}>
       <div className={styles.word__header}>
@@ -59,12 +64,18 @@ const Word = ({ currentUserID, isSignedIn, searchResult, createWord }) => {
         >
           <ion-icon name="megaphone"></ion-icon>
         </button>
+        <button
+          className={`${buttonStyles.close} ${buttonStyles.close__saved}`}
+          onClick={() => updateVisibility()}
+        >
+          <i className="lni lni-cross-circle"></i>
+        </button>
       </div>
       <div>
         <p>{searchResult[0].shortdef}</p>
       </div>
       {isSignedIn ? (
-        <button className={bookmark} onClick={() => saveWord()}>
+        <button className={buttonStyles.bookmark} onClick={() => saveWord()}>
           <i className="lni lni-bookmark"></i>
         </button>
       ) : null}
@@ -81,4 +92,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { createWord })(Word);
+export default connect(mapStateToProps, { createWord })(WordSearchResult);

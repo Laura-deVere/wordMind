@@ -18,14 +18,14 @@ import {
 const DICTIONARY_KEY = process.env.REACT_APP_API_KEY;
 
 // Google Auth
-export const signIn = (userId, userName) => async (dispatch) => {
+export const signIn = (userId, userName, avatarLink) => async (dispatch) => {
   const userRef = fireStore.collection("words").doc(userId);
 
   userRef
     .get()
     .then((doc) => {
       if (!doc.exists) {
-        fireStore.collection("words").doc(userId).set({ userName });
+        fireStore.collection("words").doc(userId).set({ userName, avatarLink });
       } else {
         console.log("already exists");
       }
@@ -33,7 +33,7 @@ export const signIn = (userId, userName) => async (dispatch) => {
     .then(() => {
       dispatch({
         type: SIGN_IN,
-        payload: { userId, userName },
+        payload: { userId, userName, avatarLink },
       });
     });
 };

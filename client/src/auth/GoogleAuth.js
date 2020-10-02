@@ -28,9 +28,12 @@ class GoogleAuth extends Component {
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
       const name = this.auth.currentUser.get().getBasicProfile().getGivenName();
-      console.log(name);
+      const avatarlink = this.auth.currentUser
+        .get()
+        .getBasicProfile()
+        .getImageUrl();
       const id = this.auth.currentUser.get().getId();
-      this.props.signIn(id, name);
+      this.props.signIn(id, name, avatarlink);
     } else {
       this.props.signOut();
     }
@@ -51,7 +54,7 @@ class GoogleAuth extends Component {
     } else if (this.props.isSignedIn) {
       return (
         <button
-          className={`${buttonStyles.btn} ${buttonStyles.btn__blue} ${buttonStyles.btn__small}`}
+          className={`${buttonStyles.btn} ${buttonStyles.btn__transparent} ${buttonStyles.btn__small}`}
           onClick={this.onSignOutClick}
         >
           <i className="lni lni-google">Sign Out</i>
@@ -60,7 +63,7 @@ class GoogleAuth extends Component {
     } else {
       return (
         <button
-          className={`${buttonStyles.btn} ${buttonStyles.btn__blue} ${buttonStyles.btn__small}`}
+          className={`${buttonStyles.btn} ${buttonStyles.btn__transparent} ${buttonStyles.btn__small}`}
           onClick={this.onSignInClick}
         >
           <i className="lni lni-google">Sign In</i>

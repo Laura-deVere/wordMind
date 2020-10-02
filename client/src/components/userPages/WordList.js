@@ -14,7 +14,7 @@ class WordList extends Component {
   renderList(currentItems) {
     return currentItems.map((word) => {
       return (
-        <li key={word.id} style={{ width: "35%" }}>
+        <li key={word.id}>
           <WordListItem word={word} />
         </li>
       );
@@ -35,6 +35,7 @@ class WordList extends Component {
     console.log(currentItems);
     return (
       <>
+        <h4>Your saved words</h4>
         <ul>{this.renderList(currentItems)}</ul>
         <Pagination
           itemsPerPage={this.state.itemsPerPage}

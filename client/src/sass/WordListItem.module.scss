@@ -1,0 +1,15 @@
+@import "./variables.scss";
+
+.listitem {
+  width: 240px;
+  color: #fff;
+  background-color: $grayishBlue;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 1em;
+  margin: 1em 0;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}

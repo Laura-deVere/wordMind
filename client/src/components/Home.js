@@ -3,10 +3,10 @@ import Blurb from "./Blurb";
 import Greeting from "./Greeting";
 const Home = () => {
   return (
-    <>
+    <div className="main">
       <Greeting />
       <Blurb />
-    </>
+    </div>
   );
 };
 

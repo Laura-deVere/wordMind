@@ -1,0 +1,46 @@
+@import "./variables.scss";
+
+.bookmark,
+.megaphone {
+  background-color: #fff;
+  border: none;
+  background-color: #fff;
+  i {
+    color: $grayishBlue;
+    font-size: 1.5em;
+    // background-color: $grayishBlue;
+  }
+  &__saved {
+    background-color: $grayishBlue;
+    i {
+      color: #fff;
+      // background-color: #fff;
+    }
+  }
+}
+
+.btn {
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 0.3em 0.5em;
+  text-decoration: none;
+  &__blue {
+    background-color: $grayishBlue;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  &__white {
+    background-color: #fff;
+    color: $grayishBlue;
+    border: 1px solid $grayishBlue;
+  }
+  &__large {
+    min-width: 85px;
+  }
+  &__medium {
+    min-width: 65px;
+  }
+  &__small {
+    min-width: 40px;
+  }
+}

@@ -3,6 +3,9 @@ import { createSentence } from "../../../actions";
 import { connect } from "react-redux";
 import SentenceList from "./SentenceList";
 
+import styles from "../../../sass/Sentences.module.scss";
+import buttonStyles from "../../../sass/Buttons.module.scss";
+
 const CreateSentence = ({
   currentWordID,
   createSentence,
@@ -24,14 +27,19 @@ const CreateSentence = ({
 
   return (
     <div>
-      <div>
+      <div className={styles.form}>
         {currentWord && word.sentences.length < 11 ? (
           <>
             <input
               value={sentence}
               onChange={(e) => updateSentence(e.target.value)}
             />
-            <button onClick={() => handleSentenceSave(word)}>Save</button>
+            <button
+              className={`${buttonStyles.btn} ${buttonStyles.btn__blue} ${buttonStyles.btn__large}`}
+              onClick={() => handleSentenceSave(word)}
+            >
+              Save
+            </button>
           </>
         ) : (
           <p>All done. 100% Complete.</p>

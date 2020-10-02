@@ -1,0 +1,10 @@
+@import "./variables.scss";
+
+.word {
+  width: 90%;
+  &__header {
+    width: 100%;
+    border-bottom: 1px solid $grayishBlue;
+    display: flex;
+  }
+}

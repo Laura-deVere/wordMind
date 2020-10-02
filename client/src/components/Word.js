@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { createWord } from "../actions";
 import useSound from "use-sound";
 
+import { bookmark, megaphone } from "../sass/Buttons.module.scss";
+import styles from "../sass/SearchResult.module.scss";
+
 const URLHelper = (pronunciation) => {
   const alaphabet = "abcdefghijklmnopqrstuvwxyz";
   let audio = pronunciation[0].sound.audio;
@@ -45,14 +48,23 @@ const Word = ({ currentUserID, isSignedIn, searchResult, createWord }) => {
     createWord(wordObj, currentUserID);
   };
 
+  console.log(currentWord);
   return (
-    <div>
-      <h3>{currentWord}</h3>
-      <button onClick={resetURLAndPlay}>
-        <ion-icon name="megaphone"></ion-icon>
-      </button>
+    <div className={styles.word}>
+      <div className={styles.word__header}>
+        <h3>{currentWord.toUpperCase()}</h3>
+        <button
+          className="mega-phone mega-phone--white"
+          onClick={resetURLAndPlay}
+        >
+          <ion-icon name="megaphone"></ion-icon>
+        </button>
+      </div>
+      <div>
+        <p>{searchResult[0].shortdef}</p>
+      </div>
       {isSignedIn ? (
-        <button onClick={() => saveWord()}>
+        <button className={bookmark} onClick={() => saveWord()}>
           <i className="lni lni-bookmark"></i>
         </button>
       ) : null}

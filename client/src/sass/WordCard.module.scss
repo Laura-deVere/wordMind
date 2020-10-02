@@ -1,0 +1,18 @@
+@import "./variables.scss";
+
+.wordCard {
+  min-height: 400px;
+  width: 90%;
+  ol {
+    margin: 1em 0;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+  a {
+    text-align: center;
+  }
+}

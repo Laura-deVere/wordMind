@@ -1,9 +1,4 @@
-$lightGray: #e7e7e9;
-$mediumGray: #bec0c4;
-$darkGray: #484c54;
-$grayishBlue: #4960c9;
-$blue: #1835e6;
-
+@import "./sass/variables.scss";
 body {
   box-sizing: border-box;
   margin: 0;
@@ -18,6 +13,33 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+.user-main {
+  flex: 4;
+  min-height: 100vh;
+}
+
+.blurb {
+  width: 60%;
+  margin: 75px auto;
+}
+
+.action-buttons {
+  background-color: $green;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mega-phone {
@@ -40,4 +62,10 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+@media (max-width: 420px) {
+  .blurb {
+    width: 90%;
+  }
 }

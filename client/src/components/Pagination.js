@@ -1,4 +1,5 @@
 import React from "react";
+import buttonStyles from "../sass/Buttons.module.scss";
 
 const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   const numberOfPages = [];
@@ -12,7 +13,12 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
         {numberOfPages.map((number) => {
           return (
             <li>
-              <button onClick={() => paginate(number)}>{number}</button>
+              <button
+                className={`${buttonStyles.btn} ${buttonStyles.btn__white} ${buttonStyles.btn__small}`}
+                onClick={() => paginate(number)}
+              >
+                {number}
+              </button>
             </li>
           );
         })}

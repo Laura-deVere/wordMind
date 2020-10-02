@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 
+import buttonStyles from "../sass/Buttons.module.scss";
+
 const Header = ({ isSignedIn }) => {
   console.log(isSignedIn);
   return (
@@ -48,7 +50,9 @@ const Header = ({ isSignedIn }) => {
         {isSignedIn ? (
           <li>
             <Link to="/user">
-              <button>
+              <button
+                className={`${buttonStyles.btn} ${buttonStyles.btn__blue} ${buttonStyles.btn__small}`}
+              >
                 <i className="lni lni-user"></i>
               </button>
             </Link>

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { signIn, signOut } from "../actions";
 import { connect } from "react-redux";
+
+import buttonStyles from "../sass/Buttons.module.scss";
+
 class GoogleAuth extends Component {
   // if state is null, no user is signed in
   componentDidMount() {
@@ -52,13 +55,19 @@ class GoogleAuth extends Component {
       return null;
     } else if (this.props.isSignedIn) {
       return (
-        <button onClick={this.onSignOutClick}>
+        <button
+          className={`${buttonStyles.btn} ${buttonStyles.btn__blue} ${buttonStyles.btn__small}`}
+          onClick={this.onSignOutClick}
+        >
           <i className="lni lni-google">Sign Out</i>
         </button>
       );
     } else {
       return (
-        <button onClick={this.onSignInClick}>
+        <button
+          className={`${buttonStyles.btn} ${buttonStyles.btn__blue} ${buttonStyles.btn__small}`}
+          onClick={this.onSignInClick}
+        >
           <i className="lni lni-google">Sign In</i>
         </button>
       );

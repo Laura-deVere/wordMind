@@ -1,0 +1,18 @@
+@import "./variables.scss";
+
+.footer {
+  background-color: #484c54;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 300px;
+  i {
+    margin-right: 10px;
+  }
+}

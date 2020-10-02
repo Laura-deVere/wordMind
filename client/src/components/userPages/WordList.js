@@ -1,6 +1,7 @@
 import React, { Component, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchWords } from "../../actions";
+import Search from "../Search";
 import Pagination from "../Pagination";
 import WordListItem from "./WordListItem";
 
@@ -35,6 +36,7 @@ class WordList extends Component {
     console.log(currentItems);
     return (
       <>
+        <Search />
         <h4>Your saved words</h4>
         <ul>{this.renderList(currentItems)}</ul>
         <Pagination

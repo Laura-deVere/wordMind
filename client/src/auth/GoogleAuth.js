@@ -27,15 +27,10 @@ class GoogleAuth extends Component {
 
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
-      // gapi.auth2
-      //   .getAuthInstance()
-      //   .currentUser.get()
-      //   .getBasicProfile()
-      //   .getGivenName();
-      // const name = this.auth.currentUser.get().getBasicProfile().getGivenName();
-
+      const name = this.auth.currentUser.get().getBasicProfile().getGivenName();
+      console.log(name);
       const id = this.auth.currentUser.get().getId();
-      this.props.signIn(this.auth.currentUser.get().getId());
+      this.props.signIn(id, name);
     } else {
       this.props.signOut();
     }

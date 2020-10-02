@@ -1,20 +1,39 @@
 @import "./variables.scss";
 
 .practice {
-  width: 100%;
+  width: 91%;
+  h3 {
+    margin: 0.5em;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $mediumGray;
+  }
+  button {
+    margin: 1em 0;
+  }
 }
 
 .form {
-  input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  textarea {
     font-size: 1em;
     border-radius: 5px;
-    width: 290px;
+    width: 90%;
+    height: 100px;
     padding: 0.5em 1em;
-    margin: 0 auto;
+    margin: 1em auto;
     color: $darkGray;
     border: none;
     -webkit-box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
     -moz-box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
     box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
   }
+}
+
+.sentenceList {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
 }

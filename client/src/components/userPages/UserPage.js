@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import Search from "../Search";
 import Word from "../Word";
 import WordCard from "./WordCard";
 import WordList from "./WordList";
@@ -11,14 +10,13 @@ import Practice from "./Practice";
 
 import { userPage } from "../../sass/UserPage.module.scss";
 
-const UserPage = ({ isSignedIn, currentWord }) => {
+const UserPage = ({ isSignedIn, userName, currentWord }) => {
   return (
     <Router>
       <section className="user-main">
         {isSignedIn ? (
           <div className={userPage}>
-            Hello User
-            <Search />
+            <h1>Hello, {userName}</h1>
             {currentWord.length ? <Word /> : null}
             <Switch>
               <Route path="/user/practice">
@@ -42,7 +40,11 @@ const UserPage = ({ isSignedIn, currentWord }) => {
 
 const mapStateToProps = (state) => {
   console.log("state from user page", state);
-  return { isSignedIn: state.auth.isSignedIn, currentWord: state.searchResult };
+  return {
+    isSignedIn: state.auth.isSignedIn,
+    userName: state.auth.userName,
+    currentWord: state.searchResult,
+  };
 };
 
 export default connect(mapStateToProps)(UserPage);

@@ -20,17 +20,20 @@ const CreateSentence = ({
 
   const handleSentenceSave = (word) => {
     const newArr = [sentence];
-    const sentences = [...word.sentences, ...newArr];
+    const sentences = [...newArr, ...word.sentences];
     updateSentence("");
     createSentence(sentences, currentWordID, currentUserID);
   };
 
   return (
     <div>
+      <h3>{word.data[0].meta.id}</h3>
       <div className={styles.form}>
         {currentWord && word.sentences.length < 11 ? (
           <>
-            <input
+            <textarea
+              maxLength="300"
+              row="4"
               value={sentence}
               onChange={(e) => updateSentence(e.target.value)}
             />

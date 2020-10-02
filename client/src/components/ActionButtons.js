@@ -5,22 +5,19 @@ import GoogleAuth from "../auth/GoogleAuth";
 import buttonStyles from "../sass/Buttons.module.scss";
 const ActionsButtons = ({ isSignedIn }) => {
   return (
-    <ul className="action-buttons">
+    <div className="action-buttons">
+      <h4>Sign up to get started.</h4>
       {isSignedIn ? (
-        <li>
-          <Link to="/user">
-            <button
-              className={`${buttonStyles.btn} ${buttonStyles.btn__white} ${buttonStyles.btn__small}`}
-            >
-              <i className="lni lni-user"></i>
-            </button>
-          </Link>
-        </li>
+        <Link to="/user">
+          <button
+            className={`${buttonStyles.btn} ${buttonStyles.btn__white} ${buttonStyles.btn__small}`}
+          >
+            <i className="lni lni-user"></i>
+          </button>
+        </Link>
       ) : null}
-      <li>
-        <GoogleAuth />
-      </li>
-    </ul>
+      <GoogleAuth />
+    </div>
   );
 };
 

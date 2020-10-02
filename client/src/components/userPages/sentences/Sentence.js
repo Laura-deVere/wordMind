@@ -4,7 +4,7 @@ const Sentence = ({ sentence }) => {
   return (
     <div>
       <p>{sentence}</p>
-      <button>Delete</button>
+      <hr></hr>
     </div>
   );
 };

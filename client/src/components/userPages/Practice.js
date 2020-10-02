@@ -10,7 +10,7 @@ const Practice = ({ currentWord }) => {
   return (
     <div className={styles.practice}>
       <h3>Write something to begin</h3>
-      {Object.keys(currentWord) === 0 ? (
+      {Object.keys(currentWord).length > 0 ? (
         <>
           <CreateSentence />
 

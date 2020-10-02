@@ -17,7 +17,6 @@ const Blurb = () => {
       using it.
       <br />
       <br />
-      Sign up to get started.
       {/* <br />
       <br />
       Make ten sentences that use different meanings of the word you want to

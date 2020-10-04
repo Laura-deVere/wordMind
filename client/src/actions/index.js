@@ -68,8 +68,8 @@ export const fetchWords = (userID) => async (dispatch) => {
   });
 };
 
-export const createWord = (newWord, userId) => async (dispatch) => {
-  const response = await createUserWord(newWord, userId);
+export const createWord = (word, newWord, userId) => async (dispatch) => {
+  const response = await createUserWord(word, newWord, userId);
   dispatch({
     type: CREATE_USER_WORD,
     payload: response,

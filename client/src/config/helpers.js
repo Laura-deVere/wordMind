@@ -26,24 +26,34 @@ export const getUserWords = async (userID) => {
     .catch((error) => console.error());
 };
 
-export const createUserWord = async (newWord, userId) => {
-  const newUserWord = await dbRef.ref(`/words/${userId}/userWords`).push();
-  const wordkey = newUserWord.key;
-  newUserWord.set({ word: newWord });
+export const createUserWord = async (wordId, newWord, userId) => {
+  await dbRef
+    .ref(`/words/${userId}/userWords/${wordId}`)
+    .once("value", (snapshot) => {
+      let exists = snapshot.val() !== null;
+      console.log("exists", exists);
+      if (exists) {
+        return {};
+      } else {
+        let word;
+        const newUserWord = dbRef.ref(`/words/${userId}/userWords/${wordId}`);
+        const wordkey = newUserWord.key;
+        newUserWord.set({ word: newWord });
 
-  const getWord = dbRef.ref(`/words/${userId}/userWords/${wordkey}`);
-  let word;
-  getWord.on("child_added", (res) => {
-    word = {
-      id: wordkey,
-      word: {
-        data: res.val().data,
-        sentences: res.val().sentences,
-      },
-    };
-  });
+        const getWord = dbRef.ref(`/words/${userId}/userWords/${wordkey}`);
+        getWord.on("child_added", (res) => {
+          word = {
+            id: wordkey,
+            word: {
+              data: res.val().data,
+              sentences: res.val().sentences,
+            },
+          };
+        });
 
-  return word;
+        return word;
+      }
+    });
 };
 
 export const setCurrentUserWord = async (wordId, currentUserID) => {

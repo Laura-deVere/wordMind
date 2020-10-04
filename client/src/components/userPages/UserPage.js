@@ -18,7 +18,7 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
   }, [currentWord]);
 
   const setSearchResultVisibility = () => {
-    setShowResult(!showResult);
+    setShowResult(true);
   };
   return (
     <Router>

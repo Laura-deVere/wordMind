@@ -51,7 +51,7 @@ const WordSearchResult = ({
       data: { ...searchResult },
       sentences: ["Write something to get started!"],
     };
-    createWord(wordObj, currentUserID);
+    createWord(currentWord, wordObj, currentUserID);
   };
 
   return (

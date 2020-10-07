@@ -6,10 +6,20 @@ import Pagination from "../Pagination";
 import WordListItem from "./WordListItem";
 
 class WordList extends Component {
-  state = { currentPage: 1, itemsPerPage: 6 };
+  state = {
+    currentPage: 1,
+    itemsPerPage: 6,
+    wordListLength: this.props.words.length,
+  };
 
   componentDidMount() {
     this.props.fetchWords(this.props.currentUserID);
+    // this.setState({ wordListLength: this.props.words.length });
+    // console.log(this.state);
+  }
+
+  componentDidUpdate() {
+    // this.props.fetchWords(this.props.cursrentUserID);
   }
 
   renderList(currentItems) {
@@ -33,7 +43,6 @@ class WordList extends Component {
       indexOfFirstItem,
       indexOfLastItem
     );
-    console.log(currentItems);
     return (
       <>
         <Search />
@@ -41,7 +50,7 @@ class WordList extends Component {
         <ul>{this.renderList(currentItems)}</ul>
         <Pagination
           itemsPerPage={this.state.itemsPerPage}
-          totalItems={this.props.words.length}
+          totalItems={this.state.wordListLength}
           paginate={this.paginate.bind(this)}
         />
       </>

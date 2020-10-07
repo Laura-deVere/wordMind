@@ -8,10 +8,11 @@
   align-items: center;
   color: $darkGray;
   padding: 1em;
+  position: relative;
   input {
     font-size: 1em;
     border-radius: 5px;
-    width: 290px;
+    width: 100%;
     padding: 0.5em 1em;
     margin: 0 auto;
     color: $darkGray;
@@ -19,6 +20,7 @@
     -webkit-box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
     -moz-box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
     box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
+    position: relative;
   }
 }
 

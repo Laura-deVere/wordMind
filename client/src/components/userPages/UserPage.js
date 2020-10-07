@@ -14,12 +14,13 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
   const [showResult, setShowResult] = useState(true);
 
   useEffect(() => {
-    setSearchResultVisibility();
+    setShowResult(true);
   }, [currentWord]);
 
   const setSearchResultVisibility = () => {
-    setShowResult(true);
+    setShowResult(!showResult);
   };
+
   return (
     <Router>
       <section className="user-main">

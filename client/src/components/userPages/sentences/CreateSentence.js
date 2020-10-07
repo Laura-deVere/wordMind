@@ -17,6 +17,7 @@ const CreateSentence = ({
   );
 
   const word = currentWord.word;
+  const wordID = currentWord.id;
 
   const handleSentenceSave = (word) => {
     const newArr = [sentence];
@@ -27,7 +28,7 @@ const CreateSentence = ({
 
   return (
     <div>
-      <h3>{word.data[0].meta.id}</h3>
+      <h3>{wordID}</h3>
       <div className={styles.form}>
         {currentWord && word.sentences.length < 11 ? (
           <>
@@ -48,7 +49,7 @@ const CreateSentence = ({
           <p>All done. 100% Complete.</p>
         )}
       </div>
-      <SentenceList sentences={word.sentences} />
+      <SentenceList />
     </div>
   );
 };

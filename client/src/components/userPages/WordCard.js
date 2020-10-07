@@ -19,9 +19,10 @@ const renderDefintionList = (list) => {
 const WordCard = ({ currentWord }) => {
   if (currentWord.id) {
     const word = currentWord.word;
+    const wordID = currentWord.id;
     return (
       <div className={styles.wordCard}>
-        <h3>{word.data[0].meta.id}</h3>
+        <h3>{wordID}</h3>
         <hr />
 
         <p>{word.data[0].fl}</p>

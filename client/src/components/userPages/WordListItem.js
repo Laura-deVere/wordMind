@@ -11,9 +11,10 @@ const handleLearnMoreClick = (word, setUserWord, currentUserID) => {
 };
 const WordListItem = ({ word, setUserWord, currentUserID }) => {
   const currentWord = word.word;
+  const wordID = word.id;
   return (
     <div className={styles.listitem}>
-      <h3>{currentWord.data[0].meta.id}</h3>
+      <h3>{wordID}</h3>
       <p>{currentWord.data[0].hwi.hw}</p>
       <hr />
       <div className={styles.buttons}>

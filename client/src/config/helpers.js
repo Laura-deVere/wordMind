@@ -1,5 +1,5 @@
 import * as firebase from "firebase";
-import { wordsRef, dbRef } from "../config/firebase";
+import { wordsRef, dbRef, fireStore } from "../config/firebase";
 
 export const getUserWords = async (userID) => {
   return await dbRef
@@ -53,6 +53,18 @@ export const createUserWord = async (wordId, newWord, userId) => {
 
         return word;
       }
+    });
+};
+
+export const deleteUserWord = async (wordId, currentUserID) => {
+  const ref = dbRef.ref(`/words/${currentUserID}/userWords/${wordId}`);
+  return await ref
+    .remove()
+    .then(() => {
+      console.log("removed");
+    })
+    .catch((error) => {
+      console.log("Remove failed: " + error.message);
     });
 };
 

@@ -4,7 +4,6 @@ import buttonStyles from "../sass/Buttons.module.scss";
 const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   const numberOfPages = [];
   // calculate page numbers
-  console.log("paggynation", itemsPerPage, totalItems, paginate);
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     numberOfPages.push(i);
   }

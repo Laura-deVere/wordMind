@@ -3,6 +3,7 @@ import {
   SIGN_OUT,
   SEARCH_WORD,
   CREATE_USER_WORD,
+  DELETE_USER_WORD,
   CREATE_SENTENCE,
   SET_USER_WORD,
   FETCH_USER_WORDS,
@@ -12,6 +13,7 @@ import { fireStore } from "../config/firebase";
 import {
   getUserWords,
   createUserWord,
+  deleteUserWord,
   createUserSentence,
   setCurrentUserWord,
 } from "../config/helpers";
@@ -53,7 +55,6 @@ export const signOut = (userId) => {
 export const searchWord = (term) => async (dispatch) => {
   // call axios.get to make an http request
   const response = await axios.get(`/${term}?key=${DICTIONARY_KEY}`);
-  console.log(response);
   // dispatch an action and send it to the reducer to update the state
   dispatch({ type: SEARCH_WORD, payload: response.data });
 };
@@ -76,9 +77,16 @@ export const createWord = (word, newWord, userId) => async (dispatch) => {
   });
 };
 
+export const deleteWord = (word, wordId, currentUserID) => async (dispatch) => {
+  const response = await deleteUserWord(wordId, currentUserID);
+  dispatch({
+    type: DELETE_USER_WORD,
+    payload: word,
+  });
+};
+
 export const setUserWord = (wordId, currentUserID) => async (dispatch) => {
   const response = await setCurrentUserWord(wordId, currentUserID);
-  console.log(response);
   dispatch({ type: SET_USER_WORD, payload: response });
 };
 
@@ -92,10 +100,8 @@ export const createSentence = (
     currentWordID,
     currentUserID
   );
-  console.log(response, "reeeeeeesponse");
   dispatch({
     type: CREATE_SENTENCE,
     payload: response,
   });
 };
-// Firebase

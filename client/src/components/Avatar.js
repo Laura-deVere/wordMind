@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import style from "../sass/Avatar.module.scss";
 
 const Avatar = ({ avatarLink }) => {
-  console.log(avatarLink);
   return (
     <Link to="/user">
       <img className={style.avatar} src={avatarLink} alt="avatar" />

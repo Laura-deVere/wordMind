@@ -1,10 +1,5 @@
 import React from "react";
-const divstyle = {
-  backgroundColor: "#4960c9",
-  color: "#fff",
-  width: "300px",
-  margin: "0 auto",
-};
+
 const Blurb = () => {
   return (
     <div className="blurb">

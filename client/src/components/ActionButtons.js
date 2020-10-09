@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import GoogleAuth from "../auth/GoogleAuth";
-import buttonStyles from "../sass/Buttons.module.scss";
 import Avatar from "./Avatar";
 const ActionsButtons = ({ isSignedIn }) => {
   return (

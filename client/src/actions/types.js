@@ -3,6 +3,7 @@ export const SIGN_OUT = "SIGN_OUT";
 export const CREATE_USER = "CREATE_USER";
 export const SEARCH_WORD = "FETCH_WORD";
 export const CREATE_USER_WORD = "CREATE_USER_WORD";
+export const DELETE_USER_WORD = "DELETE_USER_WORD";
 export const CREATE_SENTENCE = "CREATE_SENTENCE";
 export const SET_USER_WORD = "SET_USER_WORD";
 export const FETCH_USER_WORD = "FETCH_USER_WORD";

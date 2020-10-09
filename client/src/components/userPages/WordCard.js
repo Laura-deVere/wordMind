@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Practice from "./Practice";
 
 import buttonStyles from "../../sass/Buttons.module.scss";
 import styles from "../../sass/WordCard.module.scss";

@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { setUserWord } from "../../actions";
+import { setUserWord, deleteWord } from "../../actions";
 
 import buttonStyles from "../../sass/Buttons.module.scss";
 import styles from "../../sass/WordListItem.module.scss";
 
-const handleLearnMoreClick = (word, setUserWord, currentUserID) => {
-  setUserWord(word.id, currentUserID);
-};
-const WordListItem = ({ word, setUserWord, currentUserID }) => {
+const WordListItem = ({ word, setUserWord, currentUserID, deleteWord }) => {
   const currentWord = word.word;
   const wordID = word.id;
+
+  const handleLearnMoreClick = (word, setUserWord, currentUserID) => {
+    setUserWord(word.id, currentUserID);
+  };
+
   return (
     <div className={styles.listitem}>
       <h3>{wordID}</h3>
@@ -30,7 +32,10 @@ const WordListItem = ({ word, setUserWord, currentUserID }) => {
         </Link>
         <button
           className={`${buttonStyles.bookmark} ${buttonStyles.bookmark__saved}`}
-          onClick={() => console.log("clicked")}
+          onClick={() => {
+            console.log("egrehrehte", currentWord, wordID, currentUserID);
+            deleteWord(word, wordID, currentUserID);
+          }}
         >
           <i className="lni lni-cross-circle"></i>
         </button>
@@ -43,4 +48,6 @@ const mapStateToProps = (state) => {
   return { currentUserID: state.auth.userId };
 };
 
-export default connect(mapStateToProps, { setUserWord })(WordListItem);
+export default connect(mapStateToProps, { setUserWord, deleteWord })(
+  WordListItem
+);

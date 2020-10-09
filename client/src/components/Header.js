@@ -1,6 +1,4 @@
 import React from "react";
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
 import GoogleAuth from "../auth/GoogleAuth";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -10,7 +8,6 @@ import { nav } from "../sass/Header.module.scss";
 import Avatar from "./Avatar";
 
 const Header = ({ isSignedIn }) => {
-  console.log(isSignedIn);
   return (
     <nav className={nav}>
       <Link to="/">

@@ -24,6 +24,26 @@
   }
 }
 
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  a {
+    flex: 1;
+    text-decoration: none;
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  h1 {
+    flex: 2;
+  }
+}
+
 @media (max-width: 420px) {
   .userPage {
     width: 90%;

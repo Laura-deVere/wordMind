@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
@@ -8,7 +8,7 @@ import WordCard from "./WordCard";
 import WordList from "./WordList";
 import Practice from "./Practice";
 
-import { userPage } from "../../sass/UserPage.module.scss";
+import { userPage, header } from "../../sass/UserPage.module.scss";
 
 const UserPage = ({ isSignedIn, userName, currentWord }) => {
   const [showResult, setShowResult] = useState(true);
@@ -26,7 +26,16 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
       <section className="user-main">
         {isSignedIn ? (
           <div className={userPage}>
+            <div className={header}>
+            <Link
+            to="/user">
+              <button>
+                <i className="lni lni-home"></i>
+                Home
+              </button>
+            </Link>
             <h1>Hello, {userName}</h1>
+            </div>
             {currentWord.length && showResult ? (
               <WordSearchResult updateVisibility={setSearchResultVisibility} />
             ) : null}

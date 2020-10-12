@@ -51,6 +51,15 @@
   }
 }
 
+.stats {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (max-width: 420px) {
   .userPage {
     width: 90%;

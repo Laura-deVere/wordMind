@@ -8,6 +8,7 @@ import WordCard from "./WordCard";
 import WordList from "./WordList";
 import Practice from "./Practice";
 import Quiz from './Quiz';
+import Stats from "./Stats";
 
 import { userPage, header } from "../../sass/UserPage.module.scss";
 
@@ -43,6 +44,7 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
             </Link>
             <h1>Hello, {userName}</h1>
             </div>
+            <Stats />
             {currentWord.length && showResult ? (
               <WordSearchResult updateVisibility={setSearchResultVisibility} />
             ) : null}

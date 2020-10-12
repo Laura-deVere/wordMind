@@ -27,17 +27,25 @@ export const signIn = (userId, userName, avatarLink) => async (dispatch) => {
     .get()
     .then((doc) => {
       if (!doc.exists) {
-        fireStore.collection("words").doc(userId).set({ userName, avatarLink });
+        fireStore.collection("words").doc(userId).set({ userName, avatarLink, wordsCompleted: 0, points: 0, averageTimePerWord: 0 });
       } else {
         console.log("already exists");
       }
+        
     })
     .then(() => {
-      dispatch({
-        type: SIGN_IN,
-        payload: { userId, userName, avatarLink },
+      userRef.get().then((doc) => {
+        const data = doc.data();
+        const user = {
+          userId,
+          ...data
+        }
+        dispatch({
+          type: SIGN_IN,
+          payload: user,
+        });
       });
-    });
+    })
 };
 
 export const signOut = (userId) => {

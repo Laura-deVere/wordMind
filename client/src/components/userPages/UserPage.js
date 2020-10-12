@@ -7,6 +7,7 @@ import WordSearchResult from "../WordSearchResult";
 import WordCard from "./WordCard";
 import WordList from "./WordList";
 import Practice from "./Practice";
+import Quiz from './Quiz';
 
 import { userPage, header } from "../../sass/UserPage.module.scss";
 
@@ -34,12 +35,21 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
                 Home
               </button>
             </Link>
+            <Link to="/user/quiz">
+              <button>
+                <i className="lni lni-clipboard"></i>
+                Quiz
+              </button>
+            </Link>
             <h1>Hello, {userName}</h1>
             </div>
             {currentWord.length && showResult ? (
               <WordSearchResult updateVisibility={setSearchResultVisibility} />
             ) : null}
             <Switch>
+              <Route path="/user/quiz">
+                <Quiz />
+              </Route>
               <Route path="/user/practice">
                 <Practice />
               </Route>

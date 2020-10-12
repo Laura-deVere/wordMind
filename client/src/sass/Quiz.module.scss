@@ -1,0 +1,14 @@
+@import "./variables.scss";
+
+.quiz {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  ul {
+    padding: 0;
+    width: 100%;
+    li {
+      width: 100%;
+    }
+  }
+}

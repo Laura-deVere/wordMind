@@ -1,15 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { stats } from '../../sass/UserPage.module.scss'
 
-const Stats = () => {
+const Stats = ({averageTimePerWord,points,wordsCompleted}) => {
     return (
         <ul>
-            <li>Words Completed: 0</li>
-            <li>Points: 0</li>
+            <li>Words Completed: {wordsCompleted} </li>
+            <li>Points: {points} </li>
             <li>Average time per word: N/A</li>
         </ul>
     )
 }
 
-export default Stats;
+const mapStateToProps = state => {
+    return { 
+        averageTimePerWord: state.auth.averageTimePerWord,
+        points: state.auth.points,
+        wordsCompleted: state.auth.wordsCompleted
+    }
+}
+export default connect(mapStateToProps)(Stats);

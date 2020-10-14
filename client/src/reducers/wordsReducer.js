@@ -4,6 +4,7 @@ const INITIAL_STATE = [];
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CREATE_USER_WORD:
+      console.log(action.payload)
       if (!action.payload) {
         return state;
       } else {

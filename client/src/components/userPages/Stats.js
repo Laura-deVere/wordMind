@@ -6,8 +6,8 @@ import { stats } from '../../sass/UserPage.module.scss'
 const Stats = ({averageTimePerWord,points,wordsCompleted}) => {
     return (
         <ul>
-            <li>Words Completed: {wordsCompleted} </li>
-            <li>Points: {points} </li>
+            <li>Words Completed: {wordsCompleted} - </li>
+            <li>Points: {points} - </li>
             <li>Average time per word: N/A</li>
         </ul>
     )

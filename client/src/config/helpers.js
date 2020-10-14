@@ -27,6 +27,7 @@ export const getUserWords = async (userID) => {
 };
 
 export const createUserWord = async (wordId, newWord, userId) => {
+  let word;
   await dbRef
     .ref(`/words/${userId}/userWords/${wordId}`)
     .once("value", (snapshot) => {
@@ -35,7 +36,6 @@ export const createUserWord = async (wordId, newWord, userId) => {
       if (exists) {
         return {};
       } else {
-        let word;
         const newUserWord = dbRef.ref(`/words/${userId}/userWords/${wordId}`);
         const wordkey = newUserWord.key;
         newUserWord.set({ word: newWord });
@@ -50,10 +50,10 @@ export const createUserWord = async (wordId, newWord, userId) => {
             },
           };
         });
-
-        return word;
+        console.log(word)
       }
     });
+    return word;
 };
 
 export const deleteUserWord = async (wordId, currentUserID) => {

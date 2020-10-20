@@ -33,7 +33,6 @@ const WordListItem = ({ word, setUserWord, currentUserID, deleteWord }) => {
         <button
           className={`${buttonStyles.bookmark} ${buttonStyles.bookmark__saved}`}
           onClick={() => {
-            console.log("egrehrehte", currentWord, wordID, currentUserID);
             deleteWord(word, wordID, currentUserID);
           }}
         >

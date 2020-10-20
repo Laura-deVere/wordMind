@@ -36,7 +36,7 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
                 Home
               </button>
             </Link>
-            <Link to="/user/quiz">
+            <Link to="/user/quiz" onClick={()=>setShowResult(false)}>
               <button>
                 <i className="lni lni-clipboard"></i>
                 Quiz
@@ -59,7 +59,7 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
                 <WordCard />
               </Route>
               <Route path="/user">
-                <WordList />
+                <WordList hideSearchResult={setShowResult}/>
               </Route>
             </Switch>
           </div>

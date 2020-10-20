@@ -9,7 +9,7 @@ const DefinitionList = ({list}) => {
     const renderDefintionList = (shortdef) => {
         return shortdef.map((def, index) => {
             return (
-                <li>{def}</li>
+                <li key={index}>{def}</li>
             )
         })
     }
@@ -19,7 +19,6 @@ const DefinitionList = ({list}) => {
         const indexOfFirstItem = indexOfLastItem - itemsPerPage;
         const currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
         return currentItems.map((item, index) => {
-            console.log(item.shortdef)
             return (
                 <li key={index}>
                     <p>{item.fl}</p>

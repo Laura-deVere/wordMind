@@ -8,3 +8,4 @@ export const CREATE_SENTENCE = "CREATE_SENTENCE";
 export const SET_USER_WORD = "SET_USER_WORD";
 export const FETCH_USER_WORD = "FETCH_USER_WORD";
 export const FETCH_USER_WORDS = "FETCH_USER_WORDS";
+export const UPDATE_POINTS = 'UPDATE_POINTS';

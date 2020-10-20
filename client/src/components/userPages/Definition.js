@@ -17,7 +17,6 @@ const Definition = ({word}) => {
 
     return (
         <div>
-            <h1>Hint: begins with {word.id[0]}</h1>
             <ul>
             {getDefinition(word)}
             </ul>

@@ -11,4 +11,15 @@
       width: 100%;
     }
   }
+  input {
+    height: 40px;
+    font-size: 1.5em;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding-left: 5px;
+    -webkit-box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
+    -moz-box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
+    box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);
+  }
 }

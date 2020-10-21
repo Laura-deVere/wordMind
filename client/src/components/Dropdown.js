@@ -1,11 +1,19 @@
 import React from "react";
 import { dropdown } from "../sass/Dropdown.module.scss";
-const Dropdown = () => {
+const Dropdown = ({list,handleDropDownClick}) => {
   return (
     <ul className={dropdown}>
-      <li>One</li>
-      <li>Two</li>
-      <li>Three</li>
+      <li>Maybe one of these?</li>
+      {list.map((item, index) => {
+        return (
+          <li 
+            key={index} 
+            onClick={()=>handleDropDownClick(item)}
+            >
+              {item}
+          </li>
+        )
+      })}
     </ul>
   );
 };

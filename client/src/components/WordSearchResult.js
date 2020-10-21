@@ -50,6 +50,7 @@ const WordSearchResult = ({
     const wordObj = {
       data: { ...searchResult },
       sentences: ["Write something to get started!"],
+      completed: false
     };
     createWord(currentWord, wordObj, currentUserID);
   };
@@ -65,7 +66,7 @@ const WordSearchResult = ({
           <ion-icon name="megaphone"></ion-icon>
         </button>
         <button
-          className={`${buttonStyles.close} ${buttonStyles.close__saved}`}
+          className={`${buttonStyles.close}`}
           onClick={() => updateVisibility()}
         >
           <i className="lni lni-cross-circle"></i>
@@ -84,7 +85,6 @@ const WordSearchResult = ({
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     currentUserID: state.auth.userId,
     isSignedIn: state.auth.isSignedIn,

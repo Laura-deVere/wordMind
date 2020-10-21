@@ -4,13 +4,30 @@ import { dbRef, fireStore } from "../config/firebase";
 export const updatePoints = async (points, userId) => {
   const updatedPoints = points+=100;
   const userRef = fireStore.collection("words").doc(userId);
-  await userRef.update({ points: updatedPoints }).then(()=>console.log('done')).catch((error) => console.log(error));
+
+  await userRef.update({ points: updatedPoints })
+  .then(()=>console.log('done'))
+  .catch((error) => console.log(error));
+
   const data = await userRef.get().then((doc) => {
     return doc.data().points;
   }).catch((error) => console.log(error));
+
   return data;
 }
 
+const updateCompletedWords = async (wordsCompleted, userId) => {
+  wordsCompleted+=1;
+  const userRef = fireStore.collection("words").doc(userId);
+  await userRef.update({ wordsCompleted })
+  .then(()=>console.log('done'))
+  .catch((error) => console.log(error));
+  const count = await userRef.get().then((doc) => {
+    return doc.data().completed;
+  });
+  return wordsCompleted;
+}
+////
 
 // Words
 export const getUserWords = async (userID) => {
@@ -27,6 +44,7 @@ export const getUserWords = async (userID) => {
               word: {
                 data: response[key].word.data,
                 sentences: response[key].word.sentences,
+                completed: response[key].word.completed
               },
             };
           }),
@@ -59,6 +77,7 @@ export const createUserWord = async (wordId, newWord, userId) => {
             word: {
               data: res.val().data,
               sentences: res.val().sentences,
+              completed: res.val().completed
             },
           };
         });
@@ -90,6 +109,7 @@ export const setCurrentUserWord = async (wordId, currentUserID) => {
       word: {
         data: snapshot.val().data,
         sentences: snapshot.val().sentences,
+        completed: snapshot.val().completed
       },
     };
     console.log(word);
@@ -100,8 +120,10 @@ export const setCurrentUserWord = async (wordId, currentUserID) => {
 export const createUserSentence = async (
   sentences,
   currentWordID,
-  currentUserID
+  currentUserID,
+  wordsCompleted
 ) => {
+  let data, count;
   let completed = sentences.length >= 11 ? true : false;
   const getWord = dbRef.ref(
     `/words/${currentUserID}/userWords/${currentWordID}/word`
@@ -113,14 +135,24 @@ export const createUserSentence = async (
   const updateCompleted = await dbRef.ref(`/words/${currentUserID}/userWords/${currentWordID}/word/completed`)
     .set( completed );
 
+  if(completed) {
+    count = await updateCompletedWords(wordsCompleted, currentUserID);
+    console.log(count);
+  } else {
+    count = wordsCompleted;
+  }
+
   return await getWord.once("value").then((snapshot) => {
     return {
-      id: currentWordID,
-      word: {
-        data: snapshot.val().data,
-        sentences: snapshot.val().sentences,
-        completed: snapshot.val().completed
-      },
+      wordsCompleted: count,
+      data: {
+        id: currentWordID,
+        word: {
+          data: snapshot.val().data,
+          sentences: snapshot.val().sentences,
+          completed: snapshot.val().completed
+        }
+      }
     };
   });
 };

@@ -7,7 +7,8 @@ import {
   CREATE_SENTENCE,
   SET_USER_WORD,
   FETCH_USER_WORDS,
-  UPDATE_POINTS
+  UPDATE_POINTS,
+  UPDATE_COMPLETED
 } from "../actions/types";
 import axios from "../apis/dictionary";
 import { fireStore } from "../config/firebase";
@@ -61,11 +62,7 @@ export const signOut = (userId) => {
 // Google Auth
 
 export const updateUserPoints = (points, userId) => async (dispatch) => {
-  console.log('running')
  const response = await updatePoints(points, userId);
-  console.log('res',response)
-   
- console.log('running3')
   dispatch({ type: UPDATE_POINTS, payload: response })
 }
 
@@ -81,7 +78,6 @@ export const searchWord = (term) => async (dispatch) => {
 
 // Firebase
 export const fetchWords = (userID) => async (dispatch) => {
-  console.log('this works')
   const response = await getUserWords(userID);
   dispatch({
     type: FETCH_USER_WORDS,
@@ -113,15 +109,21 @@ export const setUserWord = (wordId, currentUserID) => async (dispatch) => {
 export const createSentence = (
   sentences,
   currentWordID,
-  currentUserID
+  currentUserID,
+  wordsCompleted
 ) => async (dispatch) => {
   const response = await createUserSentence(
     sentences,
     currentWordID,
-    currentUserID
+    currentUserID,
+    wordsCompleted
   );
   dispatch({
     type: CREATE_SENTENCE,
-    payload: response,
+    payload: response.data,
+  });
+  dispatch({
+    type: UPDATE_COMPLETED,
+    payload: response.wordsCompleted,
   });
 };

@@ -11,9 +11,10 @@ const CreateSentence = ({
   createSentence,
   currentWord,
   currentUserID,
+  wordsCompleted
 }) => {
   const [sentence, updateSentence] = useState(
-    "Write something and press save!"
+    ""
   );
 
   const word = currentWord.word;
@@ -23,16 +24,17 @@ const CreateSentence = ({
     const newArr = [sentence];
     const sentences = [...newArr, ...word.sentences];
     updateSentence("");
-    createSentence(sentences, currentWordID, currentUserID);
+    createSentence(sentences, currentWordID, currentUserID, wordsCompleted);
   };
 
   return (
     <div>
       <h3>{wordID}</h3>
       <div className={styles.form}>
-        {currentWord && word.sentences.length < 11 ? (
+        {currentWord && !word.completed ? (
           <>
             <textarea
+              placeholder="Write something and press save!"
               maxLength="300"
               row="4"
               value={sentence}
@@ -59,6 +61,7 @@ const mapStateToProps = (state) => {
     currentWordID: state.currentWord.id,
     currentWord: state.currentWord,
     currentUserID: state.auth.userId,
+    wordsCompleted: state.auth.wordsCompleted
   };
 };
 

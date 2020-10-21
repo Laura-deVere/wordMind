@@ -1,18 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { searchWord } from "../actions";
 import { connect } from "react-redux";
+
+import WordSearchResult from "./WordSearchResult";
+import Dropdown from './Dropdown';
 
 import styles from "../sass/Search.module.scss";
 
 const Search = (props) => {
   const [term, setTerm] = useState("");
-  const { searchWord, word } = props;
+  const { searchWord, word, searchResult } = props;
+  const [showResult, setShowResult] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     searchWord(term);
     setTerm("");
   };
+
+  const handleDropDownClick = (word) => {
+    searchWord(word);
+  }
+
+  const handleSearchResults = () => {
+      if (!searchResult[0].meta) {
+        return <Dropdown list={searchResult} handleDropDownClick={handleDropDownClick} />
+      } else {
+        return <WordSearchResult updateVisibility={setShowResult} />
+      }
+  }
 
   return (
     <div>
@@ -26,12 +42,13 @@ const Search = (props) => {
           placeholder="Search for a word..."
         />
       </form>
+      {searchResult.length && showResult ? handleSearchResults() : null}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return { word: state.word };
+  return { word: state.word, searchResult: state.searchResult };
 };
 
 export default connect(mapStateToProps, { searchWord })(Search);

@@ -19,7 +19,7 @@ class WordList extends Component {
     return currentItems.map((word) => {
       return (
         <li key={word.id}>
-          <WordListItem word={word} onClick={() => this.props.hideSearchResult(false)}/>
+          <WordListItem word={word}/>
         </li>
       );
     });

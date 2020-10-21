@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import WordSearchResult from "../WordSearchResult";
 import WordCard from "./WordCard";
 import WordList from "./WordList";
 import Practice from "./Practice";
@@ -13,16 +12,6 @@ import Stats from "./Stats";
 import { userPage, header } from "../../sass/UserPage.module.scss";
 
 const UserPage = ({ isSignedIn, userName, currentWord }) => {
-  const [showResult, setShowResult] = useState(true);
-
-  useEffect(() => {
-    setShowResult(true);
-  }, [currentWord]);
-
-  const setSearchResultVisibility = () => {
-    setShowResult(!showResult);
-  };
-
   return (
     <Router>
       <section className="user-main">
@@ -36,7 +25,7 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
                 Home
               </button>
             </Link>
-            <Link to="/user/quiz" onClick={()=>setShowResult(false)}>
+            <Link to="/user/quiz">
               <button>
                 <i className="lni lni-clipboard"></i>
                 Quiz
@@ -45,9 +34,6 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
             <h1>Hello, {userName}</h1>
             </div>
             <Stats />
-            {currentWord.length && showResult ? (
-              <WordSearchResult updateVisibility={setSearchResultVisibility} />
-            ) : null}
             <Switch>
               <Route path="/user/quiz">
                 <Quiz />
@@ -59,7 +45,7 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
                 <WordCard />
               </Route>
               <Route path="/user">
-                <WordList hideSearchResult={setShowResult}/>
+                <WordList/>
               </Route>
             </Switch>
           </div>

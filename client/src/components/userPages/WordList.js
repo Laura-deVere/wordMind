@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchWords } from "../../actions";
-import Search from "../Search";
+
 import Pagination from "../Pagination";
 import WordListItem from "./WordListItem";
+
+import { wordList } from "../../sass/UserPage.module.scss";
 
 class WordList extends Component {
   state = {
@@ -38,9 +40,8 @@ class WordList extends Component {
     );
     return (
       <>
-        <Search />
-        <h4>Your saved words</h4>
-        <ul>{this.renderList(currentItems)}</ul>
+        <h4>Saved words</h4>
+        <ul className={wordList}>{this.renderList(currentItems)}</ul>
         <Pagination
           itemsPerPage={this.state.itemsPerPage}
           totalItems={this.props.words.length}

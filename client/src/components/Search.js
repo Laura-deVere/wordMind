@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { searchWord } from "../actions";
 import { connect } from "react-redux";
 
@@ -9,7 +9,7 @@ import styles from "../sass/Search.module.scss";
 
 const Search = (props) => {
   const [term, setTerm] = useState("");
-  const { searchWord, word, searchResult } = props;
+  const { searchWord, searchResult } = props;
   const [showResult, setShowResult] = useState(true);
 
   const handleSubmit = (e) => {
@@ -31,19 +31,16 @@ const Search = (props) => {
   }
 
   return (
-    <div>
-      <h2 className={styles.formHeader}>
-        Search through the dictionary to begin.
-      </h2>
+    <>
       <form className={styles.search} onSubmit={(e) => handleSubmit(e)}>
         <input
           value={term}
           onChange={(e) => setTerm(e.target.value)}
-          placeholder="Search for a word..."
+          placeholder="Search through the dictionary to begin."
         />
       </form>
       {searchResult.length && showResult ? handleSearchResults() : null}
-    </div>
+    </>
   );
 };
 

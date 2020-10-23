@@ -12,7 +12,7 @@ const Greeting = () => {
         border-radius: 5px;
         position: absolute;
         left: 20%;
-        top: 222px;
+        top: 151px;
         color: #484c54;
         background-color: #fff;
         display: flex;

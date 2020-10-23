@@ -1,21 +1,16 @@
 @import "./variables.scss";
 
 .search {
-  width: 200px;
+  width: 90%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   color: $darkGray;
   padding: 1em;
   position: relative;
-  margin: 0 auto;
   input {
     font-size: 1em;
     border-radius: 5px;
-    max-width: 100%;
+    width: 100%;
     padding: 0.5em 1em;
-    margin: 0 auto;
     color: $darkGray;
     border: none;
     -webkit-box-shadow: -1px 4px 11px 5px rgba(204, 204, 204, 1);

@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
+import Avatar from "../Avatar";
+
 import { stats } from '../../sass/UserPage.module.scss'
 
 const Stats = ({averageTimePerWord,points,wordsCompleted}) => {
     return (
-        <ul>
-            <li>Words Completed: {wordsCompleted} - </li>
-            <li>Points: {points} - </li>
-            <li>Average time per word: N/A</li>
+        <ul className={stats}>
+            <li><Avatar /></li>
+            <li>Completed: {wordsCompleted}</li>
+            <li>Points: {points}</li>
+            {/* <li>Average time per word: N/A</li> */}
         </ul>
     )
 }

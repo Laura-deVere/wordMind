@@ -53,7 +53,7 @@ class GoogleAuth extends Component {
     } else if (this.props.isSignedIn) {
       return (
         <button
-          className={`${buttonStyles.btn} ${buttonStyles.btn__transparent} ${buttonStyles.btn__small}`}
+          className={`${buttonStyles.btn} ${buttonStyles.btn__white} ${buttonStyles.btn__small}`}
           onClick={this.onSignOutClick}
         >
           <i className="lni lni-google">Sign Out</i>
@@ -62,7 +62,7 @@ class GoogleAuth extends Component {
     } else {
       return (
         <button
-          className={`${buttonStyles.btn} ${buttonStyles.btn__transparent} ${buttonStyles.btn__small}`}
+          className={`${buttonStyles.btn} ${buttonStyles.btn__white} ${buttonStyles.btn__small}`}
           onClick={this.onSignInClick}
         >
           <i className="lni lni-google">Sign In</i>

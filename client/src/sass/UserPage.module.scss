@@ -2,15 +2,15 @@
 
 .userPage {
   flex: 1;
-  max-width: 100%;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   border-radius: 5px;
   top: 222px;
   color: #484c54;
-  background-color: #fff;
+  background-color: $lightGray;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   h4 {
     text-align: left;
     width: 90%;
@@ -27,6 +27,7 @@
   border-radius: 5px;
   color: #fff;
   margin: 1em;
+  padding: 1em;
   h1 {
     flex: 2;
     padding-left: 1em;
@@ -37,6 +38,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  // background-color: #fff;
   a {
     flex: 0.5;
     text-decoration: none;
@@ -58,7 +60,11 @@
 }
 
 .sideRight {
-  width: 200px;
+  width: 175px;
+  background-color: #fff;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 5px;
 }
 
 .userContent {
@@ -67,33 +73,87 @@
   justify-content: center;
   align-items: center;
   min-width: 70%;
-  max-width: 1200px;
+  max-width: 800px;
 }
 
 .wordList {
   width: 90%;
-  padding: 0;
+  padding: 1em;
+  border-radius: 5px;
+  // padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  background-color: #fff;
 }
 
 .stats {
-  margin: 1em 0 0 0;
-  padding: 0;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   li {
     margin: 0 1em 0.5em 0;
+    display: flex;
+    flex-direction: column;
   }
   li:first-child {
     align-self: center;
   }
+  .statusBar {
+    background-color: $grayishBlue;
+    height: 10px;
+    width: 100%;
+    border-radius: 5px;
+  }
+  .text__header {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: $grayishBlue;
+  }
+  .text__secondary {
+    font-size: 0.6em;
+    color: $darkGray;
+  }
+  img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+  }
 }
 
+@media (max-width: 600px) {
+  .userPage {
+    flex-direction: column;
+    > div:first-child {
+      order: 1;
+    }
+    > div:last-child {
+      order: 2;
+      margin: 1em auto;
+      width: 90%;
+    }
+    > div:nth-child(2) {
+      order: 3;
+    }
+  }
+  .stats {
+    margin-left: 1em;
+  }
+  .sideLeft {
+    flex-direction: row;
+    a {
+      flex: 0;
+    }
+  }
+  .wordList {
+    justify-content: center;
+  }
+}
 @media (max-width: 420px) {
   .userPage {
     width: 90%;

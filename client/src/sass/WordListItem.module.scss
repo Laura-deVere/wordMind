@@ -13,3 +13,17 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media (max-width: 600px) {
+  .listitem {
+    width: 175px;
+    margin-right: 1em;
+  }
+}
+
+@media (max-width: 411px) {
+  // .listitem {
+  //   width: 90%;
+  //   margin-right: 0.5em;
+  // }
+}

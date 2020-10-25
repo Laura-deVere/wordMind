@@ -23,7 +23,8 @@ const Greeting = () => {
         -moz-box-shadow: 4px 3px 19px 5px rgba(72, 76, 84, 0.67);
         box-shadow: 4px 3px 19px 5px rgba(72, 76, 84, 0.67);
         @media (max-width: 420px) {
-          width: 90%;
+          width: 93%;
+          left:0;
         }
       `}
     >

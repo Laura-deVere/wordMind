@@ -9,17 +9,23 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  > img {
+  > img,
+  > a img {
     width: 100px;
     height: auto;
+    margin: 1em;
   }
   ul {
     font-size: 1.5em;
     color: #fff;
-    width: 175px;
+    width: 212px;
     display: flex;
     align-items: flex-start;
     list-style: none;
+    li:last-child {
+      margin-right: 1em;
+      // padding-left: 0.5em;
+    }
   }
 }
 

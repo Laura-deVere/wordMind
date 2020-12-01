@@ -67,7 +67,6 @@ const UserPage = ({ isSignedIn, userName, currentWord }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log("state from user page", state);
   return {
     isSignedIn: state.auth.isSignedIn,
     userName: state.auth.userName,

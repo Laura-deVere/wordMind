@@ -15,7 +15,6 @@ export default (state = INITIAL_STATE, action) => {
     case SIGN_OUT:
       return { isSignedIn: false, userId: null };
     case UPDATE_POINTS:
-        console.log(action.payload)
         return {...state, points: action.payload} 
     case UPDATE_COMPLETED:
         return {...state, wordsCompleted: action.payload }    

@@ -5,8 +5,8 @@ import Avatar from "./Avatar";
 const ActionsButtons = ({ isSignedIn }) => {
   return (
     <div className="action-buttons">
-      <h4>Sign up to get started.</h4>
-      {isSignedIn ? <Avatar /> : null}
+      
+      {isSignedIn ? <Avatar /> : <h4>Sign in with Google to get started.</h4>}
       <GoogleAuth />
     </div>
   );

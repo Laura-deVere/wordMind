@@ -18,10 +18,13 @@
   ul {
     font-size: 1.5em;
     color: #fff;
-    width: 212px;
     display: flex;
     align-items: flex-start;
+    justify-content: flex-end;
     list-style: none;
+    li {
+      margin-left: 0.5em;
+    }
     li:last-child {
       margin-right: 1em;
       // padding-left: 0.5em;
@@ -34,6 +37,14 @@
     > a,
     img {
       width: 50px;
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .nav {
+    ul {
+      width: 212px;
     }
   }
 }

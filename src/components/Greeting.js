@@ -1,8 +1,10 @@
 /** @jsx jsx */
-import React from "react";
+import useSound from "use-sound";
 import { jsx, css } from "@emotion/core";
 
 const Greeting = () => {
+  const [play] = useSound('https://media.merriam-webster.com/audio/prons/en/us/mp3/h/hullo001.mp3');
+
   return (
     <div
       css={css`
@@ -29,7 +31,9 @@ const Greeting = () => {
       `}
     >
       <h1>Hello</h1>
-      <button className="mega-phone mega-phone--white">
+      <button 
+        onClick={play}
+        className="mega-phone mega-phone--white">
         <ion-icon name="megaphone"></ion-icon>
       </button>
     </div>
